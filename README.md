@@ -1,58 +1,231 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# E-ROOM – Sistem Peminjaman Ruangan
+### Fakultas Teknik | Universitas Mulawarman
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+E-ROOM (Electronic Room Reservation) merupakan aplikasi berbasis web yang dirancang untuk mempermudah proses peminjaman dan pengelolaan ruangan di lingkungan Fakultas Teknik Universitas Mulawarman.
 
-## About Laravel
+Aplikasi ini menyediakan informasi ketersediaan ruangan, jadwal peminjaman, serta sistem pengelolaan reservasi yang membantu mahasiswa dan administrator dalam mengatur penggunaan fasilitas kampus secara lebih terstruktur.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Fitur Utama
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 👨‍🎓 Mahasiswa
 
-## Learning Laravel
+- **Ketersediaan Ruangan** – Melihat daftar ruangan beserta kapasitas, fasilitas, dan jadwal penggunaannya.
+- **Pencarian Ruangan** – Memfilter ruangan berdasarkan jenis, kapasitas, dan ketersediaan.
+- **Kalender Peminjaman** – Melihat jadwal peminjaman dalam tampilan kalender.
+- **Peminjaman Ruangan** – Mengajukan peminjaman dengan mengisi identitas, tanggal, waktu, jumlah peserta, dan alasan peminjaman.
+- **Peminjaman Saya** – Melihat daftar peminjaman pribadi.
+- **Pembatalan Peminjaman** – Membatalkan peminjaman yang telah dibuat.
+- **Ekspor Kalender** – Mengunduh jadwal peminjaman dalam format `.ics`.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 🛡️ Administrator
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Dashboard** – Melihat ringkasan informasi ruangan, mahasiswa, dan peminjaman.
+- **Manajemen Ruangan** – Menambahkan, mengubah, mengaktifkan, menonaktifkan, dan menghapus data ruangan.
+- **Manajemen Mahasiswa** – Mengelola data dan akun mahasiswa.
+- **Manajemen Peminjaman** – Melihat dan mengelola seluruh data peminjaman.
+- **Persetujuan Peminjaman** – Menyetujui, menolak, atau membatalkan pengajuan peminjaman.
+- **Peminjaman Manual** – Menambahkan peminjaman atas nama mahasiswa melalui panel administrator.
+- **Filter Data** – Menyaring peminjaman berdasarkan tanggal, ruangan, status, nama, atau NIM.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+## 🧰 Teknologi yang Digunakan
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+| Teknologi | Kegunaan |
+|---|---|
+| PHP 8.3 | Bahasa pemrograman backend |
+| Laravel 13 | Framework aplikasi web |
+| MySQL / SQLite | Database |
+| Blade | Template engine |
+| Tailwind CSS | Styling antarmuka |
+| JavaScript | Interaksi dan pengelolaan tampilan |
+| Vite | Frontend build tool |
+| HTML5 | Struktur halaman |
+| CSS3 | Tampilan antarmuka |
+
+---
+
+## 🗂️ Struktur Database
+
+Aplikasi menggunakan beberapa tabel utama:
+
+| Tabel | Keterangan |
+|---|---|
+| `users` | Menyimpan data akun mahasiswa dan administrator |
+| `rooms` | Menyimpan informasi ruangan, kapasitas, fasilitas, dan status |
+| `bookings` | Menyimpan data peminjaman ruangan |
+
+### Relasi Database
+
+- Satu mahasiswa dapat memiliki banyak data peminjaman.
+- Satu ruangan dapat memiliki banyak data peminjaman.
+- Setiap peminjaman terhubung dengan satu mahasiswa dan satu ruangan.
+
+### Status Peminjaman
+
+- `menunggu` – Menunggu persetujuan administrator.
+- `disetujui` – Peminjaman telah disetujui.
+- `ditolak` – Peminjaman ditolak.
+- `dibatalkan` – Peminjaman dibatalkan.
+
+---
+
+## ⚙️ Instalasi dan Konfigurasi
+
+Ikuti langkah-langkah berikut untuk menjalankan E-ROOM di lingkungan lokal.
+
+### 1. Persyaratan Sistem
+
+Pastikan perangkat telah memiliki:
+
+- PHP 8.3 atau lebih baru.
+- Composer.
+- Node.js dan NPM.
+- Git.
+- Database SQLite atau MySQL.
+
+### 2. Clone Repository
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/nashwanfz/E-ROOM.git
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Masuk ke direktori proyek:
 
-## Contributing
+```bash
+cd E-ROOM
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3. Install Dependencies
 
-## Code of Conduct
+Install dependency Laravel:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+composer install
+```
 
-## Security Vulnerabilities
+Install dependency frontend:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+npm install
+```
 
-## License
+### 4. Konfigurasi Environment
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Salin file `.env.example` menjadi `.env`:
+
+```bash
+copy .env.example .env
+```
+
+Buat application key:
+
+```bash
+php artisan key:generate
+```
+
+### 5. Konfigurasi Database
+
+Secara default, proyek menggunakan SQLite.
+
+Pastikan file database tersedia di:
+
+```text
+database/database.sqlite
+```
+
+Jika belum tersedia, buat file tersebut terlebih dahulu.
+
+Pastikan konfigurasi berikut terdapat pada `.env`:
+
+```env
+DB_CONNECTION=sqlite
+```
+
+Jika ingin menggunakan MySQL, sesuaikan konfigurasi database pada file `.env`.
+
+### 6. Migrasi Database
+
+Jalankan migrasi untuk membuat seluruh tabel:
+
+```bash
+php artisan migrate
+```
+
+### 7. Mengisi Data Awal
+
+Jalankan seeder administrator untuk membuat akun admin, data ruangan, akun mahasiswa contoh, dan data peminjaman demonstrasi:
+
+```bash
+php artisan db:seed --class=AdminSeeder
+```
+
+### 8. Build Frontend
+
+```bash
+npm run build
+```
+
+### 9. Menjalankan Aplikasi
+
+Jalankan server Laravel:
+
+```bash
+php artisan serve
+```
+
+Buka aplikasi melalui browser:
+
+```text
+http://127.0.0.1:8000
+```
+
+---
+
+## 🔐 Akun Demonstrasi
+
+Akun berikut tersedia melalui `AdminSeeder` untuk keperluan pengujian lokal.
+
+### Administrator
+
+| Informasi | Akun |
+|---|---|
+| NIM | `1000000001` |
+| Password | `admin12345` |
+
+### Mahasiswa
+
+| Informasi | Akun |
+|---|---|
+| NIM | `2509106001` |
+| Password | `password123` |
+
+**Catatan:** Akun di atas merupakan akun demonstrasi. Ganti password sebelum digunakan dalam lingkungan produksi.
+
+---
+
+## 📝 Catatan Pengembangan
+
+E-ROOM dikembangkan sebagai aplikasi pengelolaan peminjaman ruangan untuk lingkungan Fakultas Teknik Universitas Mulawarman.
+
+Pada versi repository ini, antarmuka mahasiswa masih menggunakan penyimpanan data berbasis browser (`localStorage`) untuk demonstrasi fitur peminjaman. Sementara itu, pengelolaan data melalui panel administrator telah menggunakan Laravel dan database.
+
+Pengembangan selanjutnya dapat difokuskan pada integrasi penuh antara sistem peminjaman mahasiswa dan database agar seluruh data dapat dikelola secara terpusat.
+
+---
+
+## 👨‍💻 Developer
+
+**Nashwan Faiz Nandana Astaman**
+
+Program Studi Informatika  
+Fakultas Teknik  
+Universitas Mulawarman
+
+---
+
+## 📄 License
+
+Proyek ini dikembangkan untuk keperluan pembelajaran dan pengembangan sistem informasi di lingkungan akademik.
