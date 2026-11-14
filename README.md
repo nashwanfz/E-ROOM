@@ -216,16 +216,6 @@ Pengembangan selanjutnya dapat difokuskan pada integrasi penuh antara sistem pem
 
 ---
 
-## 👨‍💻 Developer
-
-**Nashwan Faiz Nandana Astaman**
-
-Program Studi Informatika  
-Fakultas Teknik  
-Universitas Mulawarman
-
----
-
 ## 📄 License
 
 Proyek ini dikembangkan untuk keperluan pembelajaran dan pengembangan sistem informasi di lingkungan akademik.
