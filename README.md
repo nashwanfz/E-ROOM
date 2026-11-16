@@ -200,7 +200,7 @@ Akun berikut tersedia melalui `AdminSeeder` untuk keperluan pengujian lokal.
 | Informasi | Akun |
 |---|---|
 | NIM | `2509106001` |
-| Password | `password123` |
+| Password | `Mahasiswa123` |
 
 **Catatan:** Akun di atas merupakan akun demonstrasi. Ganti password sebelum digunakan dalam lingkungan produksi.
 
