@@ -35,9 +35,9 @@
                             <button type="button" class="btn btn-ghost btn-sm" data-open="dlgStudent" data-title="Ubah mahasiswa" data-method="PUT"
                                     data-action="{{ route('admin.mahasiswa.update', $u) }}"
                                     data-item="{{ json_encode($u->only(['name', 'nim', 'prodi'])) }}">Ubah</button>
-                            <form method="POST" action="{{ route('admin.mahasiswa.destroy', $u) }}" onsubmit="return confirm('Hapus akun ini beserta seluruh riwayat peminjamannya?')">
+                            <form method="POST" action="{{ route('admin.mahasiswa.destroy', $u) }}">
                                 @csrf @method('DELETE')
-                                <button class="btn btn-danger btn-sm">Hapus</button>
+                                <button type="button" onclick="showAdminConfirmModal(this.form, 'Hapus Akun Mahasiswa', 'Apakah Anda yakin ingin menghapus akun mahasiswa {{ $u->name }} ({{ $u->nim }}) beserta seluruh riwayat peminjamannya?')" class="btn btn-danger btn-sm">Hapus</button>
                             </form>
                         </div>
                     </td>

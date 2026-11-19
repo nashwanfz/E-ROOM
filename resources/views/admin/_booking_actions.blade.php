@@ -8,18 +8,13 @@
         </form>
     @endif
     @if ($b->status === 'menunggu')
-        <form method="POST" action="{{ $url }}" onsubmit="const n = prompt('Alasan penolakan (boleh dikosongkan):'); if (n === null) return false; this.catatan_admin.value = n; return true;">
-            @csrf @method('PATCH')
-            <input type="hidden" name="status" value="ditolak">
-            <input type="hidden" name="catatan_admin" value="">
-            <button class="btn btn-ghost btn-sm">Tolak</button>
-        </form>
+        <button type="button" onclick="openRejectModal('{{ $url }}')" class="btn btn-ghost btn-sm text-red-600">Tolak</button>
     @endif
     @if ($b->status === 'disetujui')
-        <form method="POST" action="{{ $url }}" onsubmit="return confirm('Batalkan peminjaman ini?')">
+        <form method="POST" action="{{ $url }}">
             @csrf @method('PATCH')
             <input type="hidden" name="status" value="dibatalkan">
-            <button class="btn btn-ghost btn-sm">Batalkan</button>
+            <button type="button" onclick="showAdminConfirmModal(this.form, 'Batalkan Peminjaman', 'Apakah Anda yakin ingin membatalkan peminjaman {{ $b->room->nama ?? '' }} oleh {{ $b->user->name ?? '' }}?')" class="btn btn-ghost btn-sm">Batalkan</button>
         </form>
     @endif
 </div>

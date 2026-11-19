@@ -184,25 +184,30 @@ http://127.0.0.1:8000
 
 ---
 
-## 🔐 Akun Demonstrasi
+## 🔐 Akun Demonstrasi (Seeder)
 
-Akun berikut tersedia melalui `AdminSeeder` untuk keperluan pengujian lokal.
+Akun berikut tersedia melalui `php artisan db:seed` atau `php artisan migrate:fresh --seed` untuk keperluan pengujian:
 
-### Administrator
+### 1. Super Administrator & Administrator (Login via Email + Password)
 
-| Informasi | Akun |
-|---|---|
-| NIM | `1000000001` |
-| Password | `admin12345` |
+| Peran (Role) | Email | Password |
+|---|---|---|
+| Super Admin | `superadmin@ft.unmul.ac.id` | `password` |
+| Admin Pengelola | `admin@ft.unmul.ac.id` | `password` |
 
-### Mahasiswa
+### 2. Mahasiswa (Login via NIM + Password)
 
-| Informasi | Akun |
-|---|---|
-| NIM | `2509106001` |
-| Password | `Mahasiswa123` |
+Semua akun mahasiswa memiliki password: `password`
 
-**Catatan:** Akun di atas merupakan akun demonstrasi. Ganti password sebelum digunakan dalam lingkungan produksi.
+| NIM | Nama Mahasiswa | Program Studi | Email |
+|---|---|---|---|
+| `2309106125` | Nashwan Faiz Nandana Astaman | Informatika | `nashwan@student.unmul.ac.id` |
+| `2309106135` | Nanda Arianto | Informatika | `nanda@student.unmul.ac.id` |
+| `2409106008` | Intan Alfara Audia | Informatika | `intan@student.unmul.ac.id` |
+| `2409106021` | Rusdiana | Informatika | `rusdiana@student.unmul.ac.id` |
+| `2409106002` | Renaya Putri Alika | Informatika | `renaya@student.unmul.ac.id` |
+
+**Catatan:** Ganti kata sandi sebelum digunakan dalam lingkungan produksi.
 
 ---
 

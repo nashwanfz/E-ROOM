@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="E-ROOM Fakultas Teknik Universitas Mulawarman - peminjaman ruangan untuk mahasiswa.">
-    <title>E-ROOM Fakultas Teknik - Peminjaman Ruangan</title>
+    <title>E-ROOM Fakultas Teknik Universitas Mulawarman - Peminjaman Ruangan</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,9 +70,9 @@
             </div>
             <div class="sb-label leading-tight">
                 <p class="text-lg font-extrabold tracking-tight">E-ROOM</p>
-                <p class="text-xs text-[color:var(--sb-muted)]">Fakultas Teknik Unmul</p>
+                <p class="text-xs text-[color:var(--sb-muted)]">Fakultas Teknik Universitas Mulawarman</p>
             </div>
-            <button id="btnToggleSidebar" class="sb-toggle ml-auto rounded-lg p-2 hover:bg-[var(--sb-hover)]" aria-label="Kecilkan sidebar" aria-expanded="true" aria-controls="sidebar" title="Kecilkan / besarkan sidebar (B)">
+            <button id="btnToggleSidebar" class="sb-toggle ml-auto rounded-lg p-2 hover:bg-[var(--sb-hover)]" aria-label="Kecilkan sidebar" aria-expanded="true" aria-controls="sidebar" title="Kecilkan / besarkan sidebar">
                 <svg class="h-5 w-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
             </button>
         </div>
@@ -84,39 +84,26 @@
         <nav class="scroll-thin flex-1 space-y-5 overflow-y-auto overflow-x-hidden px-3 pb-4" aria-label="Menu utama">
             <div class="sb-group">
                 <p class="sb-label px-3 pb-1 text-xs font-semibold text-[color:var(--sb-muted)]">Peminjaman Ruangan</p>
-                <button data-nav="avail" title="Ketersediaan Ruangan" class="nav-btn nav-item flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm hover:bg-[var(--sb-hover)]">
+                <a href="{{ route('mahasiswa.ketersediaan') }}" title="Ketersediaan Ruangan" class="nav-item flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm hover:bg-[var(--sb-hover)]">
                     <svg class="h-5 w-5 shrink-0 text-[color:var(--sb-muted)]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1m4 0h1M9 13h1m4 0h1M9 17h1m4 0h1"/></svg>
                     <span class="sb-label">Ketersediaan Ruangan</span>
-                </button>
-                <button data-nav="cal" title="Kalender Peminjaman" class="nav-btn nav-item flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm hover:bg-[var(--sb-hover)]">
+                </a>
+                <a href="{{ route('mahasiswa.kalender') }}" title="Kalender Peminjaman" class="nav-item flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm hover:bg-[var(--sb-hover)]">
                     <svg class="h-5 w-5 shrink-0 text-[color:var(--sb-muted)]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3M4 11h16M5 5h14a1 1 0 011 1v13a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1z"/></svg>
                     <span class="sb-label">Kalender Peminjaman</span>
-                </button>
-                <button data-nav="mine" title="Peminjamanku" class="nav-btn nav-item flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm hover:bg-[var(--sb-hover)]">
+                </a>
+                <a href="{{ route('mahasiswa.peminjamanku') }}" title="Peminjamanku" class="nav-item flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm hover:bg-[var(--sb-hover)]">
                     <svg class="h-5 w-5 shrink-0 text-[color:var(--sb-muted)]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M8 6V5a2 2 0 012-2h4a2 2 0 012 2v1m-12 0h16a1 1 0 011 1v11a2 2 0 01-2 2H5a2 2 0 01-2-2V7a1 1 0 011-1z"/></svg>
                     <span class="sb-label">Peminjamanku</span>
-                    <span id="badgeMine" class="sb-label ml-auto rounded-full bg-ember-500 px-2 py-0.5 text-xs font-bold text-white">0</span>
-                </button>
-                <button data-nav="new" title="Pinjam Ruangan" class="nav-btn nav-item flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm hover:bg-[var(--sb-hover)]">
+                </a>
+                <a href="{{ route('mahasiswa.laporan') }}" title="Laporan" class="nav-item flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm hover:bg-[var(--sb-hover)]">
+                    <svg class="h-5 w-5 shrink-0 text-[color:var(--sb-muted)]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    <span class="sb-label">Laporan</span>
+                </a>
+                <button type="button" onclick="openModal()" title="Pinjam Ruangan" class="nav-item flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm hover:bg-[var(--sb-hover)]">
                     <svg class="h-5 w-5 shrink-0 text-[color:var(--sb-muted)]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
                     <span class="sb-label">Pinjam Ruangan</span>
                 </button>
-            </div>
-            <div class="sb-group">
-                <p class="sb-label px-3 pb-1 text-xs font-semibold text-[color:var(--sb-muted)]">Layanan GEARS-FT</p>
-                <a href="#" title="Pindah Aplikasi" class="nav-item flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm hover:bg-[var(--sb-hover)]">
-                    <svg class="h-5 w-5 shrink-0 text-[color:var(--sb-muted)]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-                    <span class="sb-label">Pindah Aplikasi</span>
-                </a>
-
-                {{-- Keluar: logout di Laravel harus lewat POST + @csrf --}}
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" title="Keluar" class="nav-item flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm hover:bg-[var(--sb-hover)]">
-                        <svg class="h-5 w-5 shrink-0 text-[color:var(--sb-muted)]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg>
-                        <span class="sb-label">Keluar</span>
-                    </button>
-                </form>
             </div>
         </nav>
 
@@ -124,17 +111,13 @@
             <p class="text-xs font-semibold text-[color:var(--sb-muted)]">Warna sidebar</p>
             <div id="sbSwatches" class="mt-2 flex flex-wrap items-center gap-2" role="radiogroup" aria-label="Pilih warna sidebar"></div>
         </div>
-        <div class="sb-label border-t border-[var(--sb-hover)] p-4 text-xs text-[color:var(--sb-muted)]">
-            <p class="font-semibold">Pintasan keyboard</p>
-            <p class="mt-1 leading-relaxed"><kbd class="rounded bg-[var(--sb-hover)] px-1.5">N</kbd> pinjam &nbsp; <kbd class="rounded bg-[var(--sb-hover)] px-1.5">T</kbd> hari ini &nbsp; <kbd class="rounded bg-[var(--sb-hover)] px-1.5">B</kbd> sidebar &nbsp; <kbd class="rounded bg-[var(--sb-hover)] px-1.5">/</kbd> cari</p>
-        </div>
     </aside>
 
     {{-- ===================== MAIN ===================== --}}
     <div class="flex min-w-0 flex-1 flex-col">
 
         <header class="sticky top-0 z-20 flex items-center gap-3 border-b border-stone-200 bg-white/85 px-4 py-3 backdrop-blur dark:border-stone-800 dark:bg-stone-900/85 sm:px-6">
-            <h1 class="text-base font-extrabold tracking-tight sm:text-xl">E-ROOM Fakultas Teknik</h1>
+            <h1 class="text-base font-extrabold tracking-tight sm:text-xl">E-ROOM Fakultas Teknik Universitas Mulawarman</h1>
 
             <div class="relative ml-auto hidden w-full max-w-xs md:block">
                 <svg class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
@@ -151,11 +134,13 @@
                     <span class="flex h-8 w-8 items-center justify-center rounded-full bg-unmul-600 text-sm font-bold text-white">M</span>
                     <span class="hidden text-sm font-semibold sm:block">Profil Pengguna</span>
                 </button>
-                <div id="menuProfile" class="absolute right-0 mt-2 hidden w-60 rounded-xl border border-stone-200 bg-white p-1.5 text-sm shadow-xl dark:border-stone-700 dark:bg-stone-900">
-                    <div class="px-3 py-2"><p class="font-semibold">Mahasiswa</p><p class="text-xs text-stone-500">Fakultas Teknik, Unmul</p></div>
+                <div id="menuProfile" class="absolute right-0 mt-2 hidden w-60 rounded-xl border border-stone-200 bg-white p-1.5 text-sm shadow-xl dark:border-stone-700 dark:bg-stone-900 z-50">
+                    <div class="px-3 py-2 border-b border-stone-100 dark:border-stone-800"><p class="font-semibold">Mahasiswa</p><p class="text-xs text-stone-500">Fakultas Teknik Universitas Mulawarman</p></div>
                     <button id="btnExport" class="w-full rounded-lg px-3 py-2 text-left hover:bg-stone-100 dark:hover:bg-stone-800">Ekspor peminjamanku (.ics)</button>
-                    <button id="btnForget" class="w-full rounded-lg px-3 py-2 text-left hover:bg-stone-100 dark:hover:bg-stone-800">Hapus identitas tersimpan</button>
-                    <button id="btnReset" class="w-full rounded-lg px-3 py-2 text-left text-red-600 hover:bg-red-50 dark:hover:bg-red-950/40">Kembalikan data contoh</button>
+                    <form method="POST" action="{{ route('logout') }}" class="pt-1">
+                        @csrf
+                        <button type="submit" class="w-full rounded-lg px-3 py-2 text-left font-semibold text-red-600 hover:bg-red-50 dark:hover:bg-red-950/40">Keluar (Logout)</button>
+                    </form>
                 </div>
             </div>
         </header>
@@ -263,7 +248,7 @@
         </main>
 
         <footer class="border-t border-stone-200 px-6 py-4 text-center text-xs text-stone-500 dark:border-stone-800">
-            &copy; <span id="year"></span> Fakultas Teknik, Universitas Mulawarman
+            &copy; <span id="year"></span> Fakultas Teknik Universitas Mulawarman
         </footer>
     </div>
 </div>
@@ -636,7 +621,7 @@
         const mine = state.bookings.filter(b => b.mine);
         if (!mine.length) return toast('Belum ada peminjaman untuk diekspor.');
         const dt = (d, t) => d.replace(/-/g, '') + 'T' + t.replace(':', '') + '00';
-        const L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//E-ROOM FT Unmul//ID'];
+        const L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//E-ROOM Fakultas Teknik Universitas Mulawarman//ID'];
         mine.forEach(b => L.push('BEGIN:VEVENT', `UID:${b.id}-eroom-ft-unmul`, `DTSTAMP:${dt(todayIso, '00:00')}`, `DTSTART:${dt(b.date, b.start)}`, `DTEND:${dt(b.date, b.end)}`, `SUMMARY:Pinjam ${room(b.room).name}`, `DESCRIPTION:${b.reason.replace(/[\r\n,;]/g, ' ')}`, `LOCATION:${room(b.room).name}`, 'END:VEVENT'));
         L.push('END:VCALENDAR');
         const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([L.join('\r\n')], { type: 'text/calendar' })), download: 'peminjaman-eroom.ics' });
@@ -676,12 +661,10 @@
     $('#btnProfile').onclick = e => { e.stopPropagation(); $('#menuProfile').classList.toggle('hidden'); };
     document.addEventListener('click', e => { if (!e.target.closest('#menuProfile')) $('#menuProfile').classList.add('hidden'); });
     $('#btnExport').onclick = () => { exportIcs(); $('#menuProfile').classList.add('hidden'); };
-    $('#btnForget').onclick = () => { try { localStorage.removeItem(ID_KEY); } catch {} $('#menuProfile').classList.add('hidden'); toast('Identitas tersimpan dihapus dari browser ini.'); };
-    $('#btnReset').onclick = () => { state.bookings = seed(); save(); renderAll(); $('#menuProfile').classList.add('hidden'); toast('Data contoh dikembalikan.'); };
 
     /* Tema */
     let theme = 'light';
-    try { theme = localStorage.getItem(THEME_KEY) || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch {}
+    try { theme = localStorage.getItem(THEME_KEY) || 'light'; } catch {}
     const applyTheme = t => document.documentElement.classList.toggle('dark', t === 'dark');
     applyTheme(theme);
     $('#btnTheme').onclick = () => { theme = theme === 'dark' ? 'light' : 'dark'; applyTheme(theme); try { localStorage.setItem(THEME_KEY, theme); } catch {} };
@@ -719,20 +702,6 @@
     try { const v = localStorage.getItem(COL_KEY); if (v !== null) startCol = v === '1'; } catch {}
     setCollapsed(startCol, false);
     $('#btnToggleSidebar').onclick = () => setCollapsed(!$('#sidebar').classList.contains('collapsed'), true);
-
-    /* Pintasan keyboard */
-    document.addEventListener('keydown', e => {
-        const typing = /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName);
-        if (e.key === 'Escape') { if (modalOpen()) closeModal(); return; }
-        if (typing || e.ctrlKey || e.metaKey || e.altKey || modalOpen()) return;
-        const k = e.key.toLowerCase();
-        if (e.key === '/') { e.preventDefault(); $('#search').focus(); }
-        else if (k === 'n') { e.preventDefault(); openModal(); }
-        else if (k === 't') goToday();
-        else if (k === 'b') $('#btnToggleSidebar').click();
-        else if (e.key === 'ArrowLeft') shiftMonth(-1);
-        else if (e.key === 'ArrowRight') shiftMonth(1);
-    });
 
     /* Mulai */
     $('#year').textContent = TODAY.getFullYear();

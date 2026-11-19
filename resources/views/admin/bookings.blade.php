@@ -55,9 +55,9 @@
                     <td class="td">
                         <div class="flex flex-col items-start gap-1.5">
                             @include('admin._booking_actions', ['b' => $b])
-                            <form method="POST" action="{{ route('admin.peminjaman.destroy', $b) }}" onsubmit="return confirm('Hapus peminjaman ini secara permanen?')">
+                            <form method="POST" action="{{ route('admin.peminjaman.destroy', $b) }}">
                                 @csrf @method('DELETE')
-                                <button class="btn btn-danger btn-sm">Hapus</button>
+                                <button type="button" onclick="showAdminConfirmModal(this.form, 'Hapus Peminjaman', 'Apakah Anda yakin ingin menghapus data peminjaman {{ $b->room->nama ?? '' }} oleh {{ $b->user->name ?? '' }} secara permanen?')" class="btn btn-danger btn-sm">Hapus</button>
                             </form>
                         </div>
                     </td>

@@ -10,7 +10,8 @@ class EnsureUserIsAdmin
 {
     public function handle(Request $request, Closure $next): Response
     {
-        abort_unless($request->user()?->role === 'admin', 403, 'Halaman ini khusus admin.');
+        $role = $request->user()?->role;
+        abort_unless(in_array($role, ['admin', 'super_admin'], true), 403, 'Halaman ini khusus pengelola (admin / super_admin).');
 
         return $next($request);
     }

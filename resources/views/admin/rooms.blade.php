@@ -35,9 +35,9 @@
                             <button type="button" class="btn btn-ghost btn-sm" data-open="dlgRoom" data-title="Ubah ruangan" data-method="PUT"
                                     data-action="{{ route('admin.ruangan.update', $room) }}"
                                     data-item="{{ json_encode($room->only(['kode', 'nama', 'jenis', 'kapasitas', 'fasilitas', 'aktif'])) }}">Ubah</button>
-                            <form method="POST" action="{{ route('admin.ruangan.destroy', $room) }}" onsubmit="return confirm('Hapus ruangan ini?')">
+                            <form method="POST" action="{{ route('admin.ruangan.destroy', $room) }}">
                                 @csrf @method('DELETE')
-                                <button class="btn btn-danger btn-sm">Hapus</button>
+                                <button type="button" onclick="showAdminConfirmModal(this.form, 'Hapus Ruangan', 'Apakah Anda yakin ingin menghapus ruangan {{ $room->nama }}?')" class="btn btn-danger btn-sm">Hapus</button>
                             </form>
                         </div>
                     </td>

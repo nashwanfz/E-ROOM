@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Masuk - E-ROOM Fakultas Teknik</title>
+    <title>Masuk - E-ROOM Fakultas Teknik Universitas Mulawarman</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -139,7 +139,7 @@
                 </p>
 
                 <p class="mt-1 text-sm font-medium text-unmul-200">
-                    Fakultas Teknik Unmul
+                    Fakultas Teknik Universitas Mulawarman
                 </p>
             </div>
 
@@ -215,7 +215,7 @@
 
         {{-- COPYRIGHT --}}
         <p class="relative z-10 text-xs text-unmul-300">
-            &copy; {{ date('Y') }} Fakultas Teknik, Universitas Mulawarman
+            &copy; {{ date('Y') }} Fakultas Teknik Universitas Mulawarman
         </p>
 
     </aside>
@@ -245,7 +245,7 @@
                     </p>
 
                     <p class="mt-1 text-sm text-stone-500">
-                        Fakultas Teknik Unmul
+                        Fakultas Teknik Universitas Mulawarman
                     </p>
                 </div>
 
@@ -254,11 +254,11 @@
 
             {{-- JUDUL LOGIN --}}
             <h1 class="text-2xl font-extrabold tracking-tight sm:text-3xl">
-                Masuk ke E-ROOM
+                Masuk ke E-ROOM Fakultas Teknik Universitas Mulawarman
             </h1>
 
             <p class="mt-1.5 text-sm text-stone-500 dark:text-stone-400">
-                Gunakan NIM dan kata sandi mahasiswa kamu.
+                Gunakan NIM dan kata sandi kamu.
             </p>
 
 
@@ -294,23 +294,21 @@
 
                 @csrf
 
-                {{-- NIM --}}
+                {{-- NIM atau Email --}}
                 <label class="block text-sm font-semibold">
                     NIM
 
                     <input
-                        name="nim"
-                        id="nim"
+                        name="login"
+                        id="login"
                         type="text"
-                        inputmode="numeric"
                         autocomplete="username"
                         autofocus
                         required
-                        maxlength="12"
-                        value="{{ old('nim') }}"
-                        placeholder="Contoh: 2509106001"
-                        class="field mt-1 font-normal @error('nim') invalid @enderror"
-                        @error('nim') aria-invalid="true" @enderror
+                        value="{{ old('login', old('nim')) }}"
+                        placeholder=""
+                        class="field mt-1 font-normal @error('login') invalid @enderror @error('nim') invalid @enderror"
+                        @if ($errors->has('login') || $errors->has('nim')) aria-invalid="true" @endif
                     >
                 </label>
 
@@ -380,7 +378,7 @@
 
             {{-- FOOTER --}}
             <p class="mt-8 text-center text-xs text-stone-500">
-                Hanya untuk mahasiswa Fakultas Teknik Universitas Mulawarman.
+                &copy; {{ date('Y') }} E-ROOM Fakultas Teknik Universitas Mulawarman
             </p>
 
         </div>
@@ -413,12 +411,6 @@
         });
 
 
-        // Membatasi input NIM hanya angka
-        const nim = document.getElementById('nim');
-
-        nim.addEventListener('input', () => {
-            nim.value = nim.value.replace(/\D/g, '');
-        });
 
 
         // Status tombol saat form dikirim
@@ -436,8 +428,7 @@
         // Tema mengikuti pilihan yang tersimpan
         try {
 
-            const th = localStorage.getItem('eroom.theme') ||
-                (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            const th = localStorage.getItem('eroom.theme') || 'light';
 
             document.documentElement.classList.toggle('dark', th === 'dark');
 

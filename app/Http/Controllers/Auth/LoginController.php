@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
@@ -17,27 +19,42 @@ class LoginController extends Controller
 
     public function login(Request $request): RedirectResponse
     {
-        $credentials = $request->validate([
-            'nim'      => ['required', 'regex:/^\d{8,12}$/'],
-            'password' => ['required', 'string'],
+        $inputField = $request->filled('login') ? 'login' : ($request->filled('email') ? 'email' : 'nim');
+
+        $data = $request->validate([
+            $inputField => ['required', 'string'],
+            'password'  => ['required', 'string'],
         ], [
-            'nim.required'      => 'NIM wajib diisi.',
-            'nim.regex'         => 'NIM harus berupa 8 sampai 12 angka.',
-            'password.required' => 'Kata sandi wajib diisi.',
+            "{$inputField}.required" => 'NIM wajib diisi.',
+            'password.required'      => 'Kata sandi wajib diisi.',
         ]);
 
-        if (! Auth::attempt($credentials, $request->boolean('remember'))) {
-            // Pesan sengaja disamakan agar NIM yang terdaftar tidak bisa ditebak.
+        $identifier = trim((string) $data[$inputField]);
+        $password = (string) $data['password'];
+
+        // Cari user by email (admin/super_admin) atau by NIM (mahasiswa)
+        if (filter_var($identifier, FILTER_VALIDATE_EMAIL) || str_contains($identifier, '@')) {
+            $user = User::where('email', $identifier)
+                ->whereIn('role', ['admin', 'super_admin'])
+                ->first();
+        } else {
+            $user = User::where('nim', $identifier)
+                ->where('role', 'mahasiswa')
+                ->first();
+        }
+
+        if (! $user || ! Hash::check($password, $user->password)) {
             throw ValidationException::withMessages([
-                'nim' => 'NIM atau kata sandi salah.',
+                $inputField => 'NIM/Email atau kata sandi salah.',
             ]);
         }
 
+        Auth::login($user, $request->boolean('remember'));
         $request->session()->regenerate();
 
-        $home = $request->user()->role === 'admin'
+        $home = in_array($user->role, ['admin', 'super_admin'], true)
             ? route('admin.dashboard')
-            : route('home');
+            : route('mahasiswa.ketersediaan');
 
         return redirect()->intended($home);
     }
